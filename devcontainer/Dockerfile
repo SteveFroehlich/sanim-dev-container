@@ -1,5 +1,8 @@
 FROM python:3.8-slim
 
+# Update the package repositories and install Git
+RUN apt-get -y update && apt-get -y install git
+
 RUN apt-get update -qq \
     && apt-get install --no-install-recommends -y \
         ffmpeg \
@@ -13,8 +16,11 @@ RUN apt-get update -qq \
         pkg-config \
         make \
         wget \
-        ghostscript
+        ghostscript \
 
+    # development resources
+        git
+        
 RUN pip install jupyterlab
 
 # start of test code, below is blow away
